@@ -121,3 +121,6 @@ fn main(){
 
 
 
+## Omitting lifetime annotations is referred to aas elision (elision word you can see on rust document term !!!)
+i.e. i removed the lifetime annotations -> i elided the lifetime annotations
+

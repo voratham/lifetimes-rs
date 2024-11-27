@@ -15,8 +15,12 @@ fn next_language<'a>(languages: &'a [String], current: &str) -> &'a str {
     languages.last().unwrap()
 }
 
+fn last_language<'a>(languages: &'a [String]) -> &'a str {
+    languages.last().unwrap()
+}
+
 fn main() {
-    let current = "go";
+    let current = "rust";
 
     let languages = vec![
         String::from("rust"),
@@ -26,5 +30,9 @@ fn main() {
 
     let result = next_language(&languages, &current);
 
-    println!("{}", result)
+    println!("result 1 {}", result);
+
+    let result2 = last_language(&languages);
+
+    println!("result 2 {}", result2)
 }
