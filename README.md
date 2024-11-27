@@ -71,3 +71,53 @@ fn next_language(languages: &[String], current: &str) -> &str {
 
 - Rust assumes that the return ref will point at data referred to by one of the arguments
 - Rust will not analyze the body of your function to figure out whether the return ref is pointing at the first or second arg
+
+
+
+## Super common question
+- Why does it matter whether the return ref points at the first or second arg?
+- Why doesn't rust analyze the function body to figure out if the returned ref points at the first or second arg?
+
+
+* You're using a library that implements a `split` function 
+* The function signature makes it clear that the returned ref will be tied to the first arg.
+
+```rs
+fn split<'a>(s: &'a str, pattern: &str) -> &'a str
+```
+
+-  The example work in case lifetime when specific
+
+```rs
+fn main(){
+    let sentence = "hi how are you"; // HERe
+    let result;
+    {
+        let pattern = " ";s
+        result = split(sentence , pattern)
+    }
+
+    println!("{}", resukt)
+}
+```
+
+- The example not work
+
+```rs
+fn main(){
+    let pattern = " "; // HERE not work because pattern is second argument and not specific lifetime
+    let result;
+    {
+        let sentence = "hi how are you ";
+        result = split(sentence , pattern)
+    }
+
+    println!("{}", result)
+}
+```
+
+- if we relied on the Rust to figure out the lifetimes, we wouldn't know if the returned ref uses the first or second arg
+
+
+
+
